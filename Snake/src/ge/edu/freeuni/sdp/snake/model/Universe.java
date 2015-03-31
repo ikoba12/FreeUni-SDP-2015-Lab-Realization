@@ -16,7 +16,9 @@ public class Universe {
 	public void move() {
 		for (int i = 0; i < _population.size(); i++) {
 			Being current = _population.get(i);
+			
 			current.move(_topology);
+			
 		}
 	}
 
@@ -37,6 +39,8 @@ public class Universe {
 				if (current == other && head == other.getHead())
 					continue;
 				if (other.contains(head)) {
+					other.interactWith(current);
+				}else if(other.getKind()==BeingKind.FoodMouse){
 					other.interactWith(current);
 				}
 			}

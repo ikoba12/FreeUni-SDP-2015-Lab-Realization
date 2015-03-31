@@ -1,7 +1,9 @@
 package ge.edu.freeuni.sdp.snake;
 
+import ge.edu.freeuni.sdp.snake.model.CompositePopulator;
 import ge.edu.freeuni.sdp.snake.model.Configuration;
 import ge.edu.freeuni.sdp.snake.model.Level;
+import ge.edu.freeuni.sdp.snake.model.MovingMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.SingleMousePopulator;
 import ge.edu.freeuni.sdp.snake.model.Size;
 import ge.edu.freeuni.sdp.snake.model.SphericTopology;
@@ -29,9 +31,14 @@ public class App {
 				"Very Simple Level", 
 				new SphericTopology(),
 				new SingleMousePopulator());
-
+		//კომპოზიტის საშუალებით ვუზრუნველყოფ 5 მოძრავი თაგვის დამატებას.
+		MovingMousePopulator[] mice=new MovingMousePopulator[5];
+		for(int i=0;i<5;i++) mice[i]=new MovingMousePopulator();
+		
+		Level level2 =new Level("Tom And Jerry", new SphericTopology(), new CompositePopulator(mice));
 		//TODO Add other levels here
 		levels.add(level1);
+		levels.add(level2);
 
 		Configuration.init(size, levels);
 		
